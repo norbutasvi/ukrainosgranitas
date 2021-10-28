@@ -148,6 +148,12 @@ function index({product, categories}) {
             <div className="product">
                 <div className="wrapper">
                         <div className="flex">
+                            <Link href={`/${product.category.slug}/${product.subcategory.slug}`}>
+                                <div className="back-button">
+                                <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1635431863/arrow_back_ios_white_24dp_mvwoso.svg" />
+                                Grįžti į {product.subcategory.title}
+                                </div>
+                            </Link>
                             <div className="left">
                             <SRLWrapper>
                                 <div className="image">

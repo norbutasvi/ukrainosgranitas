@@ -99,7 +99,11 @@ function index({categories, products}) {
                     </Swiper>
                     </div>
                     <div className="products">
-                        <h1>TRINKELĖS</h1>
+                    <Link href={'/trinkeles'} passHref>
+                        <a>
+                        <h1>TRINKELĖS<div className="button">Žiūrėti visas</div></h1>
+                        </a>
+                    </Link>
                         <div className="swiper-products-container">
                         <div className="products-prev" id="first-prev"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_left_white_24dp_nop2kd.svg" /></div>
                         <div className="products-next" id="first-next" ><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_right_white_24dp_qw1cli.svg" /></div>
@@ -143,7 +147,11 @@ function index({categories, products}) {
                         </div>
                     </div>
                     <div className="products">
-                        <h1>PLYTELĖS</h1>
+                    <Link href={'/plyteles'} passHref>
+                        <a>
+                        <h1>PLYTELĖS<div className="button">Žiūrėti visas</div></h1>
+                        </a>
+                    </Link>
                         <div className="swiper-products-container">
                         <div className="products-prev" id="second-prev"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_left_white_24dp_nop2kd.svg" /></div>
                         <div className="products-next" id="second-next"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_right_white_24dp_qw1cli.svg" /></div>
