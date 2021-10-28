@@ -11,16 +11,17 @@ import Header from '../../components/header';
 import { GlobalContext } from '../../components/contexts/GlobalContext';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';
+import { getUrl } from '../../services/getUrl';
 
 export async function getStaticProps(context) {
 
-  const categoriesRes = await fetch(`http://localhost:1337/categories`)
+  const categoriesRes = await fetch(`${getUrl()}/categories`)
   const categories = await categoriesRes.json();
 
   const category = categories.filter(category => category.slug == context.params.categorySlug);
 
 
-  const subcategoriesRes = await fetch(`http://localhost:1337/subcategories?_category=${category[0]._id}`)
+  const subcategoriesRes = await fetch(`${getUrl()}/subcategories?_category=${category[0]._id}`)
   const subcategories = await subcategoriesRes.json()
 
   if (subcategories.length === 0) {
@@ -42,7 +43,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch(`http://localhost:1337/categories`)
+  const res = await fetch(`${getUrl()}/categories`)
   const posts = await res.json()
 
   const paths = posts.map((post) => ({

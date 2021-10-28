@@ -10,14 +10,14 @@ import Header from '../components/header';
 import { GlobalContext } from '../components/contexts/GlobalContext';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import ProductsList from '../../../todoApp/client/src/components/Products/ProductsList';
+import { getUrl } from '../services/getUrl';
 
 export async function getStaticProps() {
 
-    const res = await fetch(`http://localhost:1337/categories`)
+    const res = await fetch(`${getUrl()}/categories`)
     const categories = await res.json()
 
-    const productsRes = await fetch(`http://localhost:1337/products?category=6177f445afee3b4b58893440&category=6177f35b8ba75b29acb703cd`)
+    const productsRes = await fetch(`${getUrl()}/products?category=6177f445afee3b4b58893440&category=6177f35b8ba75b29acb703cd`)
     const products = await productsRes.json();
 
     // const filteredRes = await fetch(`http://localhost:1337/products?_product_filters.choice.id_in=1`)

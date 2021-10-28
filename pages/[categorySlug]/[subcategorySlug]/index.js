@@ -9,19 +9,20 @@ import Header from '../../../components/header';
 import { GlobalContext } from '../../../components/contexts/GlobalContext';
 import Nav from '../../../components/Nav';
 import Footer from '../../../components/Footer';
+import { getUrl } from '../../../services/getUrl';
 
 export async function getStaticProps(context) {
 
-  const categoryRes = await fetch(`http://localhost:1337/subcategories?_slug=${context.params.subcategorySlug}`)
+  const categoryRes = await fetch(`${getUrl()}/subcategories?_slug=${context.params.subcategorySlug}`)
   const category = await categoryRes.json()
 
-  const res = await fetch(`http://localhost:1337/products/filter?categoryId=${category[0]._id}`)
+  const res = await fetch(`${getUrl()}/products/filter?categoryId=${category[0]._id}`)
   const products = await res.json()
 
-  const filtersRes = await fetch(`http://localhost:1337/filters`)
+  const filtersRes = await fetch(`${getUrl()}/filters`)
   const filters = await filtersRes.json()
 
-  const categoriesRes = await fetch(`http://localhost:1337/categories`)
+  const categoriesRes = await fetch(`${getUrl()}/categories`)
   const categories = await categoriesRes.json()
 
   if (products.length === 0) {
@@ -47,7 +48,7 @@ export async function getStaticProps(context) {
   // This function gets called at build time
   export async function getStaticPaths() {
     // Call an external API endpoint to get posts
-    const res = await fetch(`http://localhost:1337/subcategories`)
+    const res = await fetch(`${getUrl()}/subcategories`)
     const posts = await res.json()
 
     const paths = posts.map((post) => ({
@@ -146,7 +147,7 @@ export default function Home({ products, filtersArray, categorySlug, categoryId,
 
   useEffect(() => {
     if (didMount.current) {
-      let string = `http://localhost:1337/products/filter?categoryId=${categoryId}&`;
+      let string = `${getUrl()}/products/filter?categoryId=${categoryId}&`;
       if (router.query.priceBigger && router.query.priceLower) {
         string += `priceBigger=${router.query.priceBigger}&priceLower=${router.query.priceLower}&`
       }
@@ -195,7 +196,7 @@ export default function Home({ products, filtersArray, categorySlug, categoryId,
       }
   
 
-      if (string == `http://localhost:1337/products/filter?categoryId=${categoryId}&`) {
+      if (string == `${getUrl()}/products/filter?categoryId=${categoryId}&`) {
         return;
       } else {
         setIsLoading(true);

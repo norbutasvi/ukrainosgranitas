@@ -8,13 +8,14 @@ import ReactMarkdown from 'react-markdown';
 import Header from '../../../../components/header';
 import Nav from '../../../../components/Nav';
 import Footer from '../../../../components/Footer';
+import { getUrl } from '../../../../services/getUrl';
 
 export async function getStaticProps(context) {
 
-    const productsRes = await fetch(`http://localhost:1337/products?_slug=${context.params.productSlug}`)
+    const productsRes = await fetch(`${getUrl()}/products?_slug=${context.params.productSlug}`)
     const product = await productsRes.json()
 
-    const categoriesRes = await fetch(`http://localhost:1337/categories`)
+    const categoriesRes = await fetch(`${getUrl()}/categories`)
     const categories = await categoriesRes.json()
 
     if (product.length === 0) {
@@ -36,7 +37,7 @@ export async function getStaticProps(context) {
     // This function gets called at build time
     export async function getStaticPaths() {
         // Call an external API endpoint to get posts
-        const res = await fetch(`http://localhost:1337/products`)
+        const res = await fetch(`${getUrl()}/products`)
         const posts = await res.json()
     
         const paths = posts.map((post) => ({
