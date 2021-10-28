@@ -5,7 +5,9 @@ function Header({getItemsCount}) {
     return (
         <div className="header">
         <div className="col logo">
-            <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634724410/Logo_GRANITAS_1_-modified_snlcgi.png" />
+            <Link href={'/'}>
+                <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634724410/Logo_GRANITAS_1_-modified_snlcgi.png" />
+            </Link>
         </div>
         <div className="col contacts">
             <div className="item">

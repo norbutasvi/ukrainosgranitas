@@ -95,6 +95,7 @@ li {
 
 .header .logo img {
   width: 150px;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1440px) {
