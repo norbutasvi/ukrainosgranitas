@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import Header from '../../components/header'
+import Header from '../../components/Header'
 import { GlobalContext } from '../../components/contexts/GlobalContext'
 import Head from 'next/head'
 import Nav from '../../components/Nav';

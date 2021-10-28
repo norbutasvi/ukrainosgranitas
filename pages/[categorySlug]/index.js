@@ -1,13 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import react, { useEffect, useState, useRef, createContext, useContext } from 'react';
-import qs from 'qs';
-import axios from 'axios';
-import { useRouter } from 'next/router'
 import Link from 'next/link'
-import ReactSlider from 'react-slider';
-import Filter from '../../components/filter';
-import Header from '../../components/header';
+import Header from '../../components/Header';
 import { GlobalContext } from '../../components/contexts/GlobalContext';
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer';

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import ReactSlider from 'react-slider';
 import Filter from '../../../components/filter';
-import Header from '../../../components/header';
+import Header from '../../../components/Header';
 import { GlobalContext } from '../../../components/contexts/GlobalContext';
 import Nav from '../../../components/Nav';
 import Footer from '../../../components/Footer';

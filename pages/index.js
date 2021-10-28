@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, {Navigation, Pagination, Autoplay} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Header from '../components/header';
+import Header from '../components/Header';
 import { GlobalContext } from '../components/contexts/GlobalContext';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
