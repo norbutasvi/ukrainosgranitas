@@ -5,7 +5,7 @@ import { SRLWrapper } from "simple-react-lightbox";
 import { GlobalContext } from '../../../../components/contexts/GlobalContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
-import Header from '../../../../components/header';
+import Header from '../../../../components/Header';
 import Nav from '../../../../components/Nav';
 import Footer from '../../../../components/Footer';
 import { getUrl } from '../../../../services/getUrl';
