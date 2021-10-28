@@ -5,10 +5,11 @@ import Head from 'next/head'
 import Nav from '../../components/Nav';
 import Footer from '../../components/Footer'
 import Link from 'next/link';
+import { getUrl } from '../../services/getUrl';
 
 export async function getStaticProps(context) {
 
-    const categoriesRes = await fetch(`http://localhost:1337/categories`)
+    const categoriesRes = await fetch(`${getUrl()}/categories`)
     const categories = await categoriesRes.json();
   
     // const subcategoriesRes = await fetch(`http://localhost:1337/subcategories?_category=${category[0]._id}`)
