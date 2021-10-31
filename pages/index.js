@@ -20,13 +20,23 @@ export async function getStaticProps() {
     const productsRes = await fetch(`${getUrl()}/products?category=6177f445afee3b4b58893440&category=6177f35b8ba75b29acb703cd`)
     const products = await productsRes.json();
 
+    const typesRes = await fetch(`${getUrl()}/filters?_id=6177f61365299245f8d9c3d1`)
+    const types = await typesRes.json();
+
     // const filteredRes = await fetch(`http://localhost:1337/products?_product_filters.choice.id_in=1`)
     // const filteredProds = await filteredRes.json()
+
+    if (products.length === 0) {
+        return {
+          notFound: true,
+        }
+    }
   
     return {
       props: {
         categories,
         products,
+        types: types[0].choices
       }, // will be passed to the page component as props
       revalidate: 20
     }
@@ -34,7 +44,7 @@ export async function getStaticProps() {
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 
-function index({categories, products}) {
+function index({categories, products, types}) {
 
     const cartContext = useContext(GlobalContext)
 
@@ -64,136 +74,43 @@ function index({categories, products}) {
             </Head>
             <div className="wrapper">
                 <Header getItemsCount={cartContext.getItemsCount}/>
-                <Nav categories={categories}/>
-                <div className="swiper-container">
-                    <div className="buttons">
-                        <div className="prev"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_left_white_24dp_nop2kd.svg" /></div>
-                        <div className="next"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_right_white_24dp_qw1cli.svg" /></div>
+                <div className="main-content">
+                    <div className="filters">
+                        <h2>Ukrainietiško granito tipai</h2>
+                        {
+                            types.map(type =>
+                                <Link href={`/granito-tipas/search?choice=${type._id}`} passHref>
+                                    <a>
+                                    <div className="filter-item">
+                                        <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1635665243/chevron_right_white_24dp_1_cpibz2.svg" /> {type.value}
+                                    </div>
+                                    </a>
+                                </Link>
+                                )
+                        }
                     </div>
-                    <Swiper
-                        // spaceBetween={50}
-                        // modules={[Navigation, Pagination]}
-                        slidesPerView={1}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        autoplay={{delay: 5000}}
-                        navigation={{nextEl: '.next', prevEl: '.prev'}}
-                        pagination
-                        speed={1500}
-                    >
-                        <SwiperSlide>
-                        <div className="slide-item" style={{ backgroundImage: `url('https://res.cloudinary.com/dhkph6uck/image/upload/v1634713691/klinkerines_trinkeles_Feldhaus_Klinker_P609KF-1200x1000_yk6blz.jpg')`}}>
-                            <div className="slide-text">
-                                <h2>LOREM IPSUM</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam semper eros eu est placerat convallis. Mauris sed ex orci. Nam dignissim, nulla sit amet consectetur dapibus</p>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        <div className="slide-item" style={{ backgroundImage: `url('https://res.cloudinary.com/dhkph6uck/image/upload/v1634713691/klinkerines_trinkeles_Feldhaus_Klinker_P609KF-1200x1000_yk6blz.jpg')`}}>
-                            <div className="slide-text">
-                                <h2>LOREM IPSUM</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam semper eros eu est placerat convallis. Mauris sed ex orci. Nam dignissim, nulla sit amet consectetur dapibus</p>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                    </Swiper>
+                    <div className="categories-list">
+
+                    <div className="categories">
+                        {
+                        categories.map(category =>
+                            
+                            <Link key={category._id} href={`/${category.slug}`} passHref shallow>
+                            <a>
+                                <div className="item">
+                                <div className="left">
+                                    <h1>{category.title}</h1>
+                                </div>
+                                <div className="right" style={{ backgroundImage: `url('${category.image.url}')`}}>
+                                </div>
+                                </div>
+                            </a>
+                            </Link>
+                            )
+                        }
                     </div>
-                    <div className="products">
-                    <Link href={'/trinkeles'} passHref>
-                        <a>
-                        <h1>TRINKELĖS<div className="button">Žiūrėti visas</div></h1>
-                        </a>
-                    </Link>
-                        <div className="swiper-products-container">
-                        <div className="products-prev" id="first-prev"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_left_white_24dp_nop2kd.svg" /></div>
-                        <div className="products-next" id="first-next" ><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_right_white_24dp_qw1cli.svg" /></div>
-                        <Swiper
-                        // spaceBetween={50}
-                        // modules={[Navigation, Pagination]}
-                        slidesPerView={slidesNum}
-                        slidesPerGroup={slidesNum}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        autoplay={{delay: 5000, enabled: false}}
-                        navigation={{nextEl: '#first-next', prevEl: '#first-prev'}}
-                        pagination
-                        speed={1500}
-                        >
-                            {
-                                trinkeles.map(product => 
-                                    <SwiperSlide>
-                                    <Link key={product._id} href={`${product.category.slug}/${product.subcategory.slug}/${product.slug}`} passHref>
-                                        <a>
-                                        <div className="card">
-                                            <div className="image-container">
-                                                <img src={product.images[0].url} />
-                                            </div>
-                                            <p>{product.title}</p>
-                                            <div className="buttons">
-                                                <div className="button">
-                                                    DETALIAU
-                                                </div>
-                                                <div className="price">
-                                                    {product.price} €
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </Link>
-                                </SwiperSlide>
-                                    
-                                    )
-                            }
-                        </Swiper>
-                        </div>
                     </div>
-                    <div className="products">
-                    <Link href={'/plyteles'} passHref>
-                        <a>
-                        <h1>PLYTELĖS<div className="button">Žiūrėti visas</div></h1>
-                        </a>
-                    </Link>
-                        <div className="swiper-products-container">
-                        <div className="products-prev" id="second-prev"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_left_white_24dp_nop2kd.svg" /></div>
-                        <div className="products-next" id="second-next"><img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634715077/chevron_right_white_24dp_qw1cli.svg" /></div>
-                        <Swiper
-                        // spaceBetween={50}
-                        // modules={[Navigation, Pagination]}
-                        slidesPerView={slidesNum}
-                        slidesPerGroup={slidesNum}
-                        onSwiper={(swiper) => console.log(swiper)}
-                        autoplay={{delay: 5000, enabled: false}}
-                        navigation={{nextEl: '#second-next', prevEl: '#second-prev'}}
-                        pagination
-                        speed={1500}
-                        >
-                                                        {
-                                plyteles.map(product => 
-                                    <SwiperSlide>
-                                    <Link key={product._id} href={`${product.category.slug}/${product.subcategory.slug}/${product.slug}`} passHref>
-                                        <a>
-                                        <div className="card">
-                                            <div className="image-container">
-                                                <img src={product.images[0].url} />
-                                            </div>
-                                            <p>{product.title}</p>
-                                            <div className="buttons">
-                                                <div className="button">
-                                                    DETALIAU
-                                                </div>
-                                                <div className="price">
-                                                    {product.price} €
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </Link>
-                                </SwiperSlide>
-                                    
-                                    )
-                            }
-                        </Swiper>
-                        </div>
-                    </div>
+                </div>
             </div>
             <Footer />
         </div>

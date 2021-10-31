@@ -3,37 +3,57 @@ import Link from 'next/link'
 
 function Header({getItemsCount}) {
     return (
-        <div className="header">
+    <div className="header">
+        <Link href={'/'}>
         <div className="col logo">
-            <Link href={'/'}>
-                <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634724410/Logo_GRANITAS_1_-modified_snlcgi.png" />
-            </Link>
+            <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634724410/Logo_GRANITAS_1_-modified_snlcgi.png" />
         </div>
-        <div className="col contacts">
-            <div className="item">
-                <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634710811/call_black_24dp_lslbim.svg" />
-                <p>+37063631839</p>
+        </Link>
+        <div className="middle">
+            <Link href={'/'} passHref>
+            <a>
+            <div className="col">
+                PAGRINDINIS
             </div>
-            <div className="item">
-                <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634711132/email_black_24dp_laakqp.svg" />
-                <p>info@ukrainosgranitas.lt</p>
+            </a>
+            </Link>
+            <Link href={'/'} passHref>
+            <a>
+            <div className="col">
+                APIE MUS
             </div>
-        </div>
-        <div className="col right">
-            <Link href="/shipping" passHref>
-                <a>
-                    <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634712074/local_shipping_black_24dp_2_bnrfew.svg" />
-                    <p>PRISTATYMAS</p>
-                </a>
+            </a>
             </Link>
-            <Link href="/payment" passHref>
-                <a>
-                    <img src="https://res.cloudinary.com/dhkph6uck/image/upload/v1634711400/euro_black_24dp_1_a5ltbl.svg" />
-                    <p>APMOKĖJIMAS</p>
-                </a>
+            <Link href={'/'} passHref>
+            <a>
+            <div className="col">
+                PRISTATYMAS
+            </div>
+            </a>
+            </Link>
+            <Link href={'/'} passHref>
+            <a>
+            <div className="col">
+                APMOKĖJIMAS
+            </div>
+            </a>
+            </Link>
+            <Link href={'/'} passHref>
+            <a>
+            <div className="col">
+                NUOTRAUKOS
+            </div>
+            </a>
+            </Link>
+            <Link href={'/'} passHref>
+            <a>
+            <div className="col">
+                KONTAKTAI
+            </div>
+            </a>
             </Link>
         </div>
-        <div className="col right">
+        <div className="col">
             <Link href={`/cart`}>
                 <div className="item item-basket">
                 <p>{getItemsCount()}</p>

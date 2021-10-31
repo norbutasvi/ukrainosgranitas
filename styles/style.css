@@ -75,104 +75,50 @@ li {
   }
 }
 
-.header .left {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.header .right {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.header .center {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .header .logo img {
   width: 150px;
+}
+
+.header .middle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .middle a {
+  border-right: 1px solid #3281B9;
+}
+
+.header .middle a:last-child {
+  border: none;
+}
+
+.header .middle .col {
+  padding: 10px 20px;
   cursor: pointer;
 }
 
-@media only screen and (max-width: 1440px) {
-  .header .contacts {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-
-.header .col {
-  width: 25%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.header .col .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-right: 20px;
-}
-
-.header .col .item img {
-  height: 20px;
-  margin-right: 5px;
-}
-
-.header .col .item .basket {
-  margin-left: 5px;
+.header .middle .col:hover {
+  background: #3281B9;
+  color: white;
 }
 
 .header .col .item-basket {
-  background: #FFCC00;
-  padding: 5px;
-  position: relative;
-  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 20px;
+  background: #FFCC00;
+  padding: 5px;
 }
 
 .header .col .item-basket img {
-  height: 20px;
-  margin-right: 5px;
-}
-
-.header .col .item-basket .basket {
   margin-left: 5px;
-}
-
-.header .col a {
-  color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-right: 10px;
-}
-
-.header .col a img {
-  height: 20px;
-  margin-right: 5px;
 }
 
 .navigation ul {
@@ -1101,5 +1047,92 @@ li {
   padding: 10px;
   margin-top: 20px;
   cursor: pointer;
+}
+
+.main-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main-content .filters {
+  width: 25%;
+}
+
+.main-content .filters h2 {
+  border-bottom: 15px solid #FFCC00;
+}
+
+.main-content .filters .filter-item {
+  background: #3281B9;
+  padding: 20px 10px;
+  color: white;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.main-content .filters .filter-item img {
+  height: 25px;
+  margin-right: 5px;
+}
+
+.main-content .categories-list {
+  width: 73%;
+}
+
+.main-content .categories-list .categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px 0px;
+}
+
+.main-content .categories-list .categories a {
+  width: 31%;
+  margin: 1%;
+  color: black;
+}
+
+.main-content .categories-list .categories a .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: white;
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
+.main-content .categories-list .categories a .item .left {
+  width: 50%;
+  text-align: center;
+}
+
+.main-content .categories-list .categories a .item .left h1 {
+  font-size: 20px;
+}
+
+.main-content .categories-list .categories a .item .right {
+  width: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 30vh;
 }
 /*# sourceMappingURL=style.css.map */
